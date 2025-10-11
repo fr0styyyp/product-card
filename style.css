@@ -85,8 +85,7 @@
   list-style: none;
 }
 
-.body {
-  background-image: url('./images/bg 1.png');
+body {  background-image: url('./images/background-image.png');
   background-size: 790px 697px;
   background-repeat: no-repeat;
   background-position: 398px 0px;
