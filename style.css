@@ -91,3 +91,30 @@ body {
   background-repeat: no-repeat;
   background-position: 398px 0px;
 }
+
+button {
+  all: unset;
+  cursor: pointer;
+  padding: 10px 20px;
+  background-color: #515076;
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  margin-right: 10px;
+}
+
+#change-first-card-color-btn {
+  margin-left: 375px;
+}
+
+.btn {
+  transition: background-color 0.3s;
+}
+
+.btn-blue {
+  background-color: #3498db;
+}
+
+.btn-red {
+  background-color: #e74c3c;
+}
