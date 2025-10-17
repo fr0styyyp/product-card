@@ -108,7 +108,7 @@ button {
 }
 
 .btn {
-  transition: background-color 0.3s;
+  transition: 0.3s;
 }
 
 .btn-blue {

@@ -1,17 +1,17 @@
 // покраска все карточки в синий цвет
 
 const productCards = document.querySelectorAll('.card-container');
-const changeColorBtn = document.querySelector('#change-all-card-color-btn');
+const changeAllCardsColorBtn = document.querySelector('#change-all-card-color-btn');
 const blueColor = '#0000FF';
-const redColor = '#FF0000';
 
-changeColorBtn.addEventListener('click', () => {
+changeAllCardsColorBtn.addEventListener('click', () => {
   productCards.forEach((card) => card.style.backgroundColor = blueColor)
 })
 
 
 // покраска первой карточки в красный цвет
 
+const redColor = '#FF0000';
 const firstProductCard = document.querySelector('.card-container');
 const changeFirstCardColorBtn = document.querySelector('#change-first-card-color-btn');
 
@@ -54,7 +54,7 @@ function outputConsoleLog(message) {
 const mainTitle = document.querySelector('.product-title');
 
 mainTitle.addEventListener('mouseover', () => {
-  console.log('Вы навели на заголовок!');
+  console.log(mainTitle.textContent);
 })
 
 
@@ -63,6 +63,11 @@ mainTitle.addEventListener('mouseover', () => {
 const toggleColorBtn = document.querySelector('#toggle-color-btn');
 
 toggleColorBtn.addEventListener('click', () => {
-  toggleColorBtn.classList.toggle('btn-blue');
-  toggleColorBtn.classList.toggle('btn-red');
-})
+  if (toggleColorBtn.classList.contains('btn-blue')) {
+    toggleColorBtn.classList.remove('btn-blue');
+    toggleColorBtn.classList.add('btn-red');
+  } else {
+    toggleColorBtn.classList.remove('btn-red');
+    toggleColorBtn.classList.add('btn-blue');
+  }
+});
