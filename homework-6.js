@@ -65,4 +65,4 @@ const isRareBook = (bookArray) => {
     book.isRare = book.year < 2000
   })
 }
-isRareBook()
+isRareBook(allBooks)
