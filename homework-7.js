@@ -1,4 +1,7 @@
 // Уровень 1:
+// Задание - 6. Сделал константу экспортируемой и импортировал её сюда
+import { comments } from './comments.js';
+
 // Задание - 1. Создал файл homework-7.js и подключил его в index.html
 
 // Задание - 2. Массив до 10 но отфилтрованный от чисел меньше 5
@@ -6,7 +9,7 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const filteredNumbers = numbers.filter(num => num >= 5);
 
 // Задание - 3. Поиск опрелеоенную сущность в массиве
-const movies = [
+const movieNames = [
   "Начало",
   "Интерстеллар",
   "Темный рыцарь",
@@ -19,8 +22,8 @@ const movies = [
   "Остров проклятых"
 ];
 
-const searchMovie = (title) => {
-  if (movies.includes(title)) {
+const searchMovie = title => {
+  if (movieNames.includes(title)) {
     console.log(`Фильм ${title} найден в списке.`)
   } else {
     console.log(`Фильм ${title} не найден в списке.`)
@@ -29,17 +32,14 @@ const searchMovie = (title) => {
 searchMovie();
 
 // Задание - 4. Функция которая принимает массив и переворачивает его порядок
-const reverseArray = (arr) => {
+const reverseArray = arr => {
   console.log(arr.reverse())
 }
-reverseArray(movies);
+reverseArray(movieNames);
 reverseArray(numbers);
 
 // Уровень 2:
 // Задание - 5. Добавил массив comments в comments.js
-
-// Задание - 6. Сделал константу экспортируемой и импортировал её сюда
-import { comments } from './comments.js';
 
 // Задание - 7. Фильтрация комментариев по email с доменом .com
 const filterCommentsByEmail = comments.filter(comment => comment.email.includes('.com'))
@@ -56,12 +56,7 @@ const updatedComments = comments.map(comment => {
 console.log(updatedComments);
 
 // Задание - 9. Перебрать массив, что бы объекты состояли только из айди и имени
-const shortComments = comments.map(comment => {
-  return {
-    id: comment.id,
-    name: comment.name
-  }
-})
+const shortComments = comments.map(comment => ({id: comment.id, name: comment.name}));
 console.log(shortComments);
 
 // Задание - 10. Перебираем массив, добавляем объектам свойство isInvalid и проверяем: если длина тела сообщения (body) больше 180 символов - устанавливаем true, меньше - false.
