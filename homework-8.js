@@ -1,7 +1,7 @@
-import { products } from './products.js';
+import { products } from './product-cards.js';
 
 const productTemplate = document.getElementById('product-card-template')
-const productList = document.querySelector('.product-list');
+const productList = document.getElementById('product-list');
 
 const FIELD_MAPPING ={
   imageSrc: '.product-image',
@@ -43,7 +43,7 @@ productsArray.forEach(product => {
 });
 }
 
-let count = promt("Сколько карточек отобразить? От 1 до 5")
+let count = prompt("Сколько карточек отобразить? От 1 до 5")
 count = Number(count);
 if (isNaN(count) || count < 1 || count > 5) {
   alert("Некорректное значение. Пожалуйста, введите число от 1 до 5.");
