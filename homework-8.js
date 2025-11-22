@@ -27,8 +27,9 @@ const renderProducts = productsArray => {
         const value = product[key];
         
         const BASE_IMAGE_PATH = './images/';
+        const IMAGE_EXTENSION = '.png';
         if (key === 'imageName') {
-          element.src = BASE_IMAGE_PATH + value;
+          element.src = BASE_IMAGE_PATH + value + IMAGE_EXTENSION;
           element.alt = product.name;
         } else if (key === 'price') {
           element.textContent = `${value} ₽`;
