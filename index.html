@@ -119,10 +119,92 @@
       <p class="product-price"></p>
     </li>
   </template>
+  <form action="#" id="registerForm">
+    <label for="firstName">Имя</label>
+    <input type="text" id="firstName" placeholder="Введите имя" required>
+    <label for="secondName">Фамилия</label>
+    <input type="text" id="secondName" placeholder="Введите фамилию" required>
+    <label for="birthday">Дата рождения</label>
+    <input type="date" id="birthday" placeholder="Введите дату рождение" required>
+    <label for="login">Логин</label>
+    <input type="text" id="login" placeholder="Введите логин" required>
+    <label for="password">Пароль</label>
+    <input type="password" id="password" placeholder="Введите пароль" required>
+    <label for="repeatedPassword">Повторите пароль</label>
+    <input type="password" id="repeatedPassword" placeholder="Повторно введите пароль" required>
+    <button type="submit" class="registrationBtn">Зарегестрироваться</button>
+  </form>
+
+  <form action="#" id="authForm">
+    <button id="authBtn" type="button">Аутенфикация</button>
+  </form>
+  <div class="overlay"></div>
+
+<div class="modal" id="modal">
+  <button class="modal-close">×</button>
+  <div class="modal-content">
+    <form action="#" id="loginForm">
+      <label for="loginInput">Логин</label>
+      <input type="text" placeholder="Введите ваш логин" id="loginInput" required>
+      <label for="passwordInput">Пароль</label>
+      <input type="password" placeholder="Введите ваш пароль" id="passwordInput" required>
+      <button type="submit" id="loginBtn">Войти</button>
+    </form>
+  </div>
+</div>
+
+
+  <footer>
+    <div class="container">
+
+      <div class="footer-top">
+
+        <div class="footer-info">
+          <h3 class="footer-title">Product Cards</h3>
+          <p class="footer-description">У Нас Самые Лучшие Продукты Для Кожи!</p>
+
+          <nav class="social-links">
+            <a href="#"><img src="images/logo-tg.svg" alt=""></a>
+            <a href="#"><img src="images/logo-vk.svg" alt=""></a>
+          </nav>
+        </div>
+
+        <div class="footer-subscribe">
+          <form action="#" id="subscribe-form">
+            <label for="email-input" class="input-title">Подпишись на наши акции:</label>
+            <div class="subscribe-form">
+              <input id="email-input" type="email" placeholder="Введи Email...">
+              <button type="submit" class="subscribe-button">Подписаться</button>
+            </div>
+          </form>
+
+          <div class="footer-bottom">
+            <div class="footer-line"></div>
+            <p class="footer-bottom-text">
+              <a href="#">www.product-cards.com</a> © All rights reserved
+            </p>
+          </div>
+
+        </div>
+
+        <div class="footer-menu">
+          <span class="menu-title">Быстрые ссылки</span>
+          <ul>
+            <li class="footer-menu-item"><a href="#">Главная</a></li>
+            <li class="footer-menu-item"><a href="#">Магазин</a></li>
+            <li class="footer-menu-item"><a href="#">Контакты</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </footer>
   <script src="main.js"></script>
   <script src="homework-5.js"></script>
   <script src="homework-6.js"></script>
   <script type="module" src="homework-7.js"></script>
   <script type="module" src="homework-8.js"></script>
+  <script type="module" src="homework-9.js"></script>
 </body>
 </html>
