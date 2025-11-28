@@ -9,7 +9,7 @@ const emailInput = document.getElementById('email-input');
 subscribeForm.addEventListener('submit', function(event) {
   event.preventDefault();
   const email = emailInput.value.trim();
-  if (email === '') {
+  if (!email) {
     alert('Введите ваш email.');
     return;
   }
@@ -27,15 +27,16 @@ subscribeForm.addEventListener('submit', function(event) {
 let registeredUser = null
 const registerForm = document.getElementById('registerForm');
 
-registerForm.addEventListener('submit', function(e) {
+registerForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  const firstName = document.getElementById('firstName').value.trim();
-  const secondName = document.getElementById('secondName').value.trim();
-  const birthday = document.getElementById('birthday').value.trim();
-  const login = document.getElementById('login').value.trim();
-  const password = document.getElementById('password').value.trim();
-  const repeatedPassword = document.getElementById('repeatedPassword').value.trim();
+  const formData = new FormData(registerForm);
+  const firstName = formData.get('firstName').trim();
+  const secondName = formData.get('secondName').trim();
+  const birthday = formData.get('birthday').trim();
+  const login = formData.get('login').trim();
+  const password = formData.get('password').trim();
+  const repeatedPassword = formData.get('repeatedPassword').trim();
 
   if (password !== repeatedPassword) {
     alert('Пароли не совпадают');
@@ -59,7 +60,7 @@ registerForm.addEventListener('submit', function(e) {
 // Задание 8 - Создать модальное окно
 
 const openBtn = document.getElementById('authBtn')
-const modal = document.getElementById('modal')
+const modal = document.getElementById('authModal')
 const overlay = document.querySelector('.overlay')
 const closeBtn = document.querySelector('.modal-close')
 
@@ -77,7 +78,7 @@ closeBtn.addEventListener('click', () => {
 
 const loginForm = document.getElementById('loginForm');
 let currentUser = null 
-loginForm.addEventListener('submit', function(e) {
+loginForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const loginInput = document.getElementById('loginInput').value.trim();

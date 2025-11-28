@@ -121,26 +121,31 @@
   </template>
   <form action="#" id="registerForm">
     <label for="firstName">Имя</label>
-    <input type="text" id="firstName" placeholder="Введите имя" required>
+    <input type="text" id="firstName" name="firstName" placeholder="Введите имя" required>
+
     <label for="secondName">Фамилия</label>
-    <input type="text" id="secondName" placeholder="Введите фамилию" required>
+    <input type="text" id="secondName" name="secondName" placeholder="Введите фамилию" required>
+
     <label for="birthday">Дата рождения</label>
-    <input type="date" id="birthday" placeholder="Введите дату рождение" required>
+    <input type="date" id="birthday" name="birthday" placeholder="Введите дату рождение" required>
+
     <label for="login">Логин</label>
-    <input type="text" id="login" placeholder="Введите логин" required>
+    <input type="text" id="login" name="login" placeholder="Введите логин" required>
+
     <label for="password">Пароль</label>
-    <input type="password" id="password" placeholder="Введите пароль" required>
+    <input type="password" id="password" name="password" placeholder="Введите пароль" required>
+
     <label for="repeatedPassword">Повторите пароль</label>
-    <input type="password" id="repeatedPassword" placeholder="Повторно введите пароль" required>
+    <input type="password" id="repeatedPassword" name="repeatedPassword" placeholder="Повторно введите пароль" required>
+
     <button type="submit" class="registrationBtn">Зарегестрироваться</button>
   </form>
 
-  <form action="#" id="authForm">
-    <button id="authBtn" type="button">Аутенфикация</button>
-  </form>
+
+  <button id="authBtn" type="button">Аутенфикация</button>
   <div class="overlay"></div>
 
-<div class="modal" id="modal">
+<div class="modal" id="authModal">
   <button class="modal-close">×</button>
   <div class="modal-content">
     <form action="#" id="loginForm">
@@ -164,8 +169,12 @@
           <p class="footer-description">У Нас Самые Лучшие Продукты Для Кожи!</p>
 
           <nav class="social-links">
-            <a href="#"><img src="images/logo-tg.svg" alt=""></a>
-            <a href="#"><img src="images/logo-vk.svg" alt=""></a>
+            <a href="#">
+              <img src="images/logo-tg.svg" alt="Telegram logo">
+            </a>
+            <a href="#">
+              <img src="images/logo-vk.svg" alt="Vk logo">
+            </a>
           </nav>
         </div>
 
@@ -189,11 +198,13 @@
 
         <div class="footer-menu">
           <span class="menu-title">Быстрые ссылки</span>
-          <ul>
-            <li class="footer-menu-item"><a href="#">Главная</a></li>
-            <li class="footer-menu-item"><a href="#">Магазин</a></li>
-            <li class="footer-menu-item"><a href="#">Контакты</a></li>
-          </ul>
+          <nav>
+            <ul>
+              <li class="footer-menu-item"><a href="#">Главная</a></li>
+              <li class="footer-menu-item"><a href="#">Магазин</a></li>
+              <li class="footer-menu-item"><a href="#">Контакты</a></li>
+            </ul>
+          </nav>
         </div>
 
       </div>
