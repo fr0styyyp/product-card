@@ -6,7 +6,7 @@
 const subscribeForm = document.getElementById('subscribe-form');
 const emailInput = document.getElementById('email-input');
 
-subscribeForm.addEventListener('submit', function(event) {
+subscribeForm.addEventListener('submit', (event) => {
   event.preventDefault();
   const email = emailInput.value.trim();
   if (!email) {
