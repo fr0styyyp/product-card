@@ -31,24 +31,19 @@ registerForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const formData = new FormData(registerForm);
-  const firstName = formData.get('firstName').trim();
-  const secondName = formData.get('secondName').trim();
-  const birthday = formData.get('birthday').trim();
-  const login = formData.get('login').trim();
-  const password = formData.get('password').trim();
-  const repeatedPassword = formData.get('repeatedPassword').trim();
+  const data = Object.fromEntries(formData.entries());
 
-  if (password !== repeatedPassword) {
+  if (data.password !== data.repeatedPassword) {
     alert('Пароли не совпадают');
     return;
   }
 
   const user = {
-    firstName,
-    secondName,
-    birthday,
-    login,
-    password,
+    firstName: data.firstName.trim(),
+    secondName: data.secondName.trim(),
+    birthday: data.birthday.trim(),
+    login: data.login.trim(),
+    password: data.password.trim(),
     createdOn: new Date()
   };
   console.log(user);
