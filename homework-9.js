@@ -27,23 +27,23 @@ subscribeForm.addEventListener('submit', (event) => {
 let registeredUser = null
 const registerForm = document.getElementById('registerForm');
 
+
 registerForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const formData = new FormData(registerForm);
-  const data = Object.fromEntries(formData.entries());
-
+  const data = Object.fromEntries(formData.entries()); 
+  
+  for(let key in data) {
+    data[key] = data[key].trim();
+  }
   if (data.password !== data.repeatedPassword) {
     alert('Пароли не совпадают');
     return;
   }
 
   const user = {
-    firstName: data.firstName.trim(),
-    secondName: data.secondName.trim(),
-    birthday: data.birthday.trim(),
-    login: data.login.trim(),
-    password: data.password.trim(),
+    ...data,
     createdOn: new Date()
   };
   console.log(user);
