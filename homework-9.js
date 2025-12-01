@@ -32,18 +32,19 @@ registerForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const formData = new FormData(registerForm);
-  const data = Object.fromEntries(formData.entries()); 
+  const formValues = Object.fromEntries(formData.entries()); 
   
-  for(let key in data) {
-    data[key] = data[key].trim();
-  }
-  if (data.password !== data.repeatedPassword) {
+  Object.keys(formValues).forEach(key => {
+    formValues[key] = formValues[key].trim();
+  });
+  
+  if (formValues.password !== formValues.repeatedPassword) {
     alert('Пароли не совпадают');
     return;
   }
 
   const user = {
-    ...data,
+    ...formValues,
     createdOn: new Date()
   };
   console.log(user);
