@@ -27,30 +27,40 @@ subscribeForm.addEventListener('submit', (event) => {
 let registeredUser = null
 const registerForm = document.getElementById('registerForm');
 
-
-registerForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  const formData = new FormData(registerForm);
-  const formValues = Object.fromEntries(formData.entries()); 
-  
-  Object.keys(formValues).forEach(key => {
+class User {
+  constructor(registerFormElement) {
+    this.registerFormElement = registerFormElement;
+  }
+  getValues() {
+    const formData = new FormData(registerForm);
+    const formValues = Object.fromEntries(formData.entries());
+    Object.keys(formValues).forEach(key => {
     formValues[key] = formValues[key].trim();
   });
-  
-  if (formValues.password !== formValues.repeatedPassword) {
+  return formValues;
+  }
+  isValid() {
+    const formValues = this.getValues();
+    return formValues.password === formValues.repeatedPassword;
+  }
+  reset() {
+    this.registerFormElement.reset();
+  }
+}
+
+const userForm = new User(registerForm);
+registerForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (!userForm.isValid()) {
     alert('Пароли не совпадают');
     return;
   }
+  registeredUser = userForm.getValues();
+  registeredUser.createdOn = new Date();
+  console.log(registeredUser);
 
-  const user = {
-    ...formValues,
-    createdOn: new Date()
-  };
-  console.log(user);
-  
-  registeredUser = user; // Задание - 6 сохранил в переменную
-});
+  userForm.reset();
+})
 
 // Задание 7 - создал кнопку аутенфикации
 // Задание 8 - Создать модальное окно
@@ -60,14 +70,30 @@ const modal = document.getElementById('authModal')
 const overlay = document.querySelector('.overlay')
 const closeBtn = document.querySelector('.modal-close')
 
-openBtn.addEventListener('click', () => {
-  modal.classList.add('modal-showed')
-  overlay.classList.add('overlay-showed')
-});
+class ModalWindow {
+  constructor(modalElement, overlayElement) {
+    this.modalElement = modalElement;
+    this.overlayElement = overlayElement;
+  }
+  open() {
+    this.modalElement.classList.add('modal-showed'); 
+    this.overlayElement.classList.add('overlay-showed');
+  }
+  close() {
+    this.modalElement.classList.remove('modal-showed');
+    this.overlayElement.classList.remove('overlay-showed');
+  }
+  isOpen() {
+    return this.modalElement.classList.contains('modal-showed');
+  }
+}
 
+const authModal = new ModalWindow(modal, overlay);
+openBtn.addEventListener('click', () => {
+  authModal.open();
+});
 closeBtn.addEventListener('click', () => {
-  modal.classList.remove('modal-showed')
-  overlay.classList.remove('overlay-showed')
+  authModal.close();
 });
 
 // Задание - 9 Вход по логину и паролю

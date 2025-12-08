@@ -32,13 +32,13 @@ const checkMaxSpeed = (car) => {
     car.maxSpeed = 300
   }
 }
-checkMaxSpeed()
+checkMaxSpeed(car)
 
 // Задание - 6. Функция которая выводит в консоль свойство и значение обьекта
 const logObjectProperties = (obj, propertyName) => {
   console.log(obj[propertyName])
 }
-logObjectProperties()
+logObjectProperties(car, 'model')
 
 // Задание - 7. Массив с названием продуктовых карточек
 const productCards = ['Увлажняющий мусс', 'Увлажняющая маска', 'Гель для умывания', 'Подарочный набор №1', 'Подарочный набор №5'];
