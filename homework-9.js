@@ -27,28 +27,33 @@ subscribeForm.addEventListener('submit', (event) => {
 let registeredUser = null
 const registerForm = document.getElementById('registerForm');
 
-class User {
+class RegistrationForm {
   constructor(registerFormElement) {
     this.registerFormElement = registerFormElement;
   }
+
   getValues() {
-    const formData = new FormData(registerForm);
-    const formValues = Object.fromEntries(formData.entries());
-    Object.keys(formValues).forEach(key => {
-    formValues[key] = formValues[key].trim();
-  });
-  return formValues;
+    const formData = new FormData(this.registerFormElement);
+    const formValues = Object.fromEntries(
+      Object.entries(
+        Object.fromEntries(formData.entries())
+      ).map(([key, value]) => [key, value.trim()])
+    );
+
+    return formValues;
   }
+
   isValid() {
     const formValues = this.getValues();
     return formValues.password === formValues.repeatedPassword;
   }
+
   reset() {
     this.registerFormElement.reset();
   }
 }
 
-const userForm = new User(registerForm);
+const userForm = new RegistrationForm(registerForm);
 registerForm.addEventListener('submit', (e) => {
   e.preventDefault();
   if (!userForm.isValid()) {
@@ -63,39 +68,6 @@ registerForm.addEventListener('submit', (e) => {
 })
 
 // Задание 7 - создал кнопку аутенфикации
-// Задание 8 - Создать модальное окно
-
-const openBtn = document.getElementById('authBtn')
-const modal = document.getElementById('authModal')
-const overlay = document.querySelector('.overlay')
-const closeBtn = document.querySelector('.modal-close')
-
-class ModalWindow {
-  constructor(modalElement, overlayElement) {
-    this.modalElement = modalElement;
-    this.overlayElement = overlayElement;
-  }
-  open() {
-    this.modalElement.classList.add('modal-showed'); 
-    this.overlayElement.classList.add('overlay-showed');
-  }
-  close() {
-    this.modalElement.classList.remove('modal-showed');
-    this.overlayElement.classList.remove('overlay-showed');
-  }
-  isOpen() {
-    return this.modalElement.classList.contains('modal-showed');
-  }
-}
-
-const authModal = new ModalWindow(modal, overlay);
-openBtn.addEventListener('click', () => {
-  authModal.open();
-});
-closeBtn.addEventListener('click', () => {
-  authModal.close();
-});
-
 // Задание - 9 Вход по логину и паролю
 
 const loginForm = document.getElementById('loginForm');

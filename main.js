@@ -5,3 +5,7 @@ import './homework-7.js';
 import './homework-8.js';
 import './homework-9.js';
 import './character.js';
+import './warrior.js';
+import './mage.js';
+import './archer.js';
+import './modal.js';
