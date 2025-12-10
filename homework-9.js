@@ -1,7 +1,10 @@
+import { Modal } from './Modal.js';
+import { Form } from './Form.js';
 // Задание 1 - Создаем файл, все как прошлых дз.
 // Задание 2 - Почитать про теги: <label>, <form>, <input> (источники прикреплены в конце ДЗ)
 // Задание 3 - Сверстать данный footer (https://www.figma.com/design/H8BBp1sq6u6N0MqdF9hrsq/Untitled?node-id=0-1&t=xbP3bxfa7ojVOSJk-1), используя семантические теги (footer, nav и т.д.)
 // Задание 4 - Валидация - email должен соответствовать стандартам (добавить валидацию), если он не заполнен - форма не отправляется
+
 
 const subscribeForm = document.getElementById('subscribe-form');
 const emailInput = document.getElementById('email-input');
@@ -27,33 +30,7 @@ subscribeForm.addEventListener('submit', (event) => {
 let registeredUser = null
 const registerForm = document.getElementById('registerForm');
 
-class RegistrationForm {
-  constructor(registerFormElement) {
-    this.registerFormElement = registerFormElement;
-  }
-
-  getValues() {
-    const formData = new FormData(this.registerFormElement);
-    const formValues = Object.fromEntries(
-      Object.entries(
-        Object.fromEntries(formData.entries())
-      ).map(([key, value]) => [key, value.trim()])
-    );
-
-    return formValues;
-  }
-
-  isValid() {
-    const formValues = this.getValues();
-    return formValues.password === formValues.repeatedPassword;
-  }
-
-  reset() {
-    this.registerFormElement.reset();
-  }
-}
-
-const userForm = new RegistrationForm(registerForm);
+const userForm = new Form(registerForm);
 registerForm.addEventListener('submit', (e) => {
   e.preventDefault();
   if (!userForm.isValid()) {
@@ -68,6 +45,20 @@ registerForm.addEventListener('submit', (e) => {
 })
 
 // Задание 7 - создал кнопку аутенфикации
+
+const openBtn = document.getElementById('authBtn')
+const modal = document.getElementById('authModal')
+const overlay = document.querySelector('.overlay')
+const closeBtn = document.querySelector('.modal-close')
+
+const authModal = new Modal(modal);
+openBtn.addEventListener('click', () => {
+  authModal.open();
+});
+closeBtn.addEventListener('click', () => {
+  authModal.close();
+});
+
 // Задание - 9 Вход по логину и паролю
 
 const loginForm = document.getElementById('loginForm');

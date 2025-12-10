@@ -1,4 +1,4 @@
-import { Character } from './character.js';
+import { Character } from './Character.js';
 class Warrior extends Character {
   constructor(name, health, strength, armor, damage) {
     super(name, health, strength);

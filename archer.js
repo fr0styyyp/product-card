@@ -1,4 +1,4 @@
-import { Character } from './character.js';
+import { Character } from './Character.js';
 class Archer extends Character {
   constructor(name, health, strength, rangedAttack, accuracy) {
     super(name, health, strength);

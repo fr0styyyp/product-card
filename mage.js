@@ -1,4 +1,4 @@
-import { Character } from './character.js';
+import { Character } from './Character.js';
 class Mage extends Character {
   constructor(name, health, strength, mana, magicPower) {
     super(name, health, strength);
