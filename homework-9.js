@@ -34,9 +34,16 @@ const userForm = new Form(registerForm);
 registerForm.addEventListener('submit', (e) => {
   e.preventDefault();
   if (!userForm.isValid()) {
+    alert('Форма заполнена некорректно');
+    return;
+  }
+  
+  const data = userForm.getValues();
+  if (data.password !== data.repeatedPassword) {
     alert('Пароли не совпадают');
     return;
   }
+  
   registeredUser = userForm.getValues();
   registeredUser.createdOn = new Date();
   console.log(registeredUser);
@@ -49,15 +56,9 @@ registerForm.addEventListener('submit', (e) => {
 const openBtn = document.getElementById('authBtn')
 const modal = document.getElementById('authModal')
 const overlay = document.querySelector('.overlay')
-const closeBtn = document.querySelector('.modal-close')
 
 const authModal = new Modal(modal);
-openBtn.addEventListener('click', () => {
-  authModal.open();
-});
-closeBtn.addEventListener('click', () => {
-  authModal.close();
-});
+authModal.bindOpenButton(openBtn);
 
 // Задание - 9 Вход по логину и паролю
 

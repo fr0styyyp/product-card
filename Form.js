@@ -1,10 +1,10 @@
 export class Form {
-  constructor(registerFormElement) {
-    this.registerFormElement = registerFormElement;
+  constructor(formElement) {
+    this.formElement = formElement;
   }
 
   getValues() {
-    const formData = new FormData(this.registerFormElement);
+    const formData = new FormData(this.formElement);
     const formValues = Object.fromEntries(
       [...formData.entries()].map(([key, value]) => [key, value.trim()])
     );
@@ -12,11 +12,10 @@ export class Form {
   }
 
   isValid() {
-    const formValues = this.getValues();
-    return formValues.password === formValues.repeatedPassword;
+    return this.formElement.checkValidity();
   }
 
   reset() {
-    this.registerFormElement.reset();
+    this.formElement.reset();
   }
 }
