@@ -1,7 +1,10 @@
+import { Modal } from './Modal.js';
+import { Form } from './Form.js';
 // Задание 1 - Создаем файл, все как прошлых дз.
 // Задание 2 - Почитать про теги: <label>, <form>, <input> (источники прикреплены в конце ДЗ)
 // Задание 3 - Сверстать данный footer (https://www.figma.com/design/H8BBp1sq6u6N0MqdF9hrsq/Untitled?node-id=0-1&t=xbP3bxfa7ojVOSJk-1), используя семантические теги (footer, nav и т.д.)
 // Задание 4 - Валидация - email должен соответствовать стандартам (добавить валидацию), если он не заполнен - форма не отправляется
+
 
 const subscribeForm = document.getElementById('subscribe-form');
 const emailInput = document.getElementById('email-input');
@@ -27,48 +30,35 @@ subscribeForm.addEventListener('submit', (event) => {
 let registeredUser = null
 const registerForm = document.getElementById('registerForm');
 
-
+const userForm = new Form(registerForm);
 registerForm.addEventListener('submit', (e) => {
   e.preventDefault();
-
-  const formData = new FormData(registerForm);
-  const formValues = Object.fromEntries(formData.entries()); 
+  if (!userForm.isValid()) {
+    alert('Форма заполнена некорректно');
+    return;
+  }
   
-  Object.keys(formValues).forEach(key => {
-    formValues[key] = formValues[key].trim();
-  });
-  
-  if (formValues.password !== formValues.repeatedPassword) {
+  const data = userForm.getValues();
+  if (data.password !== data.repeatedPassword) {
     alert('Пароли не совпадают');
     return;
   }
-
-  const user = {
-    ...formValues,
-    createdOn: new Date()
-  };
-  console.log(user);
   
-  registeredUser = user; // Задание - 6 сохранил в переменную
-});
+  registeredUser = userForm.getValues();
+  registeredUser.createdOn = new Date();
+  console.log(registeredUser);
+
+  userForm.reset();
+})
 
 // Задание 7 - создал кнопку аутенфикации
-// Задание 8 - Создать модальное окно
 
 const openBtn = document.getElementById('authBtn')
 const modal = document.getElementById('authModal')
 const overlay = document.querySelector('.overlay')
-const closeBtn = document.querySelector('.modal-close')
 
-openBtn.addEventListener('click', () => {
-  modal.classList.add('modal-showed')
-  overlay.classList.add('overlay-showed')
-});
-
-closeBtn.addEventListener('click', () => {
-  modal.classList.remove('modal-showed')
-  overlay.classList.remove('overlay-showed')
-});
+const authModal = new Modal(modal);
+authModal.bindOpenButton(openBtn);
 
 // Задание - 9 Вход по логину и паролю
 
