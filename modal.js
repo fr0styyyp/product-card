@@ -6,8 +6,7 @@ export class Modal {
     this.overlayElement = document.querySelector('.overlay')
     this.closeBtn = this.modalElement.querySelector('.modal-close');
     
-    this._bindClose();
-    this._bindOverlay();
+    this.#onClose();
   }
 
   open() {
@@ -30,15 +29,17 @@ export class Modal {
     });
   }
   
-  _bindClose() {
+  #onClose() {
     if (this.closeBtn) {
-      this.closeBtn.addEventListener('click', () => {this.close();});
+      this.closeBtn.addEventListener('click', () => {
+        this.close();
+      });
     }
-  }
-  
-  _bindOverlay() {
+    
     if (this.overlayElement) {
-      this.overlayElement.addEventListener('click', () => {this.close();});
+      this.overlayElement.addEventListener('click', () => {
+        this.close();
+      })
     }
   }
 }
