@@ -6,6 +6,7 @@ import './homework-8.js';
 import './homework-9.js';
 import './Character.js';
 import './Warrior.js';
-import './Mage.js';
+import './mage.js';
 import './Archer.js';
 import './Modal.js';
+import './Drink.js'
