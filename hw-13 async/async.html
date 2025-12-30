@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="data-message">Данные загружаются</div>
+  
+  <div class="controls">
+    <button id="get-all-btn">Получить всех пользователей</button>
+    <button id="delete-all-btn">Удалить все карточки</button>
+  </div>
+  
+  <ul class="user-cards-container"></ul>
+  <template id="user-template">
+    <li class="user-card">
+      <h3 class="user-name"></h3>
+      <p class="user-email"></p>
+      <p class="user-age"></p>
+      <button class="delete-btn">Удалить</button>
+    </li>
+  </template>
+</body>
+<script src="async.js"></script>
+</html>
