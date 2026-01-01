@@ -7,16 +7,15 @@ const showLoadingText = () => {
   message.textContent = 'Данные загружаются'
 }
 
-async function loadUsers() {
+async function fetchUsers() {
   try {
     const response = await fetch('users.json')
     if (!response.ok) throw new Error(`Ошибка HTTP: ${response.status}`)
       
     const data = await response.json()
     
-    const usersArray = Object.values(data.users)
-    localStorage.setItem('users', JSON.stringify(usersArray))
-    return usersArray;
+    localStorage.setItem('users', JSON.stringify(data))
+    return data;
   } catch (error) {
     message.textContent = 'Ошибка при загрузке данных'
     console.error('Произошла ошибка:', error)
@@ -45,7 +44,7 @@ const renderUsers = (users) => {
   
   users.forEach(user => {
     const clone = template.content.cloneNode(true)
-    clone.querySelector('.user-name').textContent = `${ user.name } ${user.surname}`
+    clone.querySelector('.user-name').textContent = `${ user.name } ${ user.surname }`
     clone.querySelector('.user-email').textContent = user.email
     clone.querySelector('.user-age').textContent = `Возраст: ${ user.age }`
     
@@ -56,11 +55,11 @@ const renderUsers = (users) => {
   });
 } 
 
-if (!usersFromStorage) {
+if (!usersFromStorage || usersFromStorage.length === 0) {
   showLoadingText()
   
   setTimeout(async () => {
-    const result = await loadUsers()
+    const result = await fetchUsers()
     if (result) {
       const users = JSON.parse(localStorage.getItem('users'))
       renderUsers(users)
@@ -81,17 +80,14 @@ deleteAllBtn.addEventListener('click', () => {
 })
 
 getAllBtn.addEventListener('click', async () => {
-  const storedData = JSON.parse(localStorage.getItem('users' || '[]'))
+  const storedData = JSON.parse(localStorage.getItem('users') || '[]')
   try {
-  const response = await fetch('users.json')
-  const data = await response.json()
-  const originalUsers = Object.values(data.users)
+  const users = await fetchUsers()
   
-  if (storedData.length === originalUsers.length && originalUsers.length !== 0) {
+  if (storedData.length === users.length && users.length !== 0) {
     alert('Информационное сообщение: Все пользователи и так отображены на странице.')
   } else {
-    localStorage.setItem('users', JSON.stringify(originalUsers))
-    renderUsers(originalUsers)
+    renderUsers(users)
   }
   } catch (error) {
     console.error('Не удалось проверить данные:', error)
