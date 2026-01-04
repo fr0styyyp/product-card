@@ -328,3 +328,10 @@ a {
   color: red;
   transform: scale(1.2);
 }
+
+.async-link {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
